@@ -25,9 +25,20 @@ For example, given the above Scores table, your query should generate the follow
 +-------+------+
 ***************************************************************************/
 
+# Method 1
 select Score, rank from
 (select  (Case WHEN @pre_score = Score THEN @rank := @rank WHEN @pre_score <> Score THEN @rank := @rank + 1 END) as rank
 		, @pre_score := Score as Score
 from (select Score from Scores order by Score desc) as sorted_score
 		, (select @rank:=0,@pre_score := -1000) as init) as DATA1
+
+# Method 2
+select Scores.Score, count(*) as Rank
+from Scores , (select distinct Score from Scores order by Score desc) as Ranking
+where Scores.Score <= Ranking.Score
+group by Scores.Id
+order by Scores.Score desc;
+
+
+
 
