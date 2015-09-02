@@ -4,4 +4,4 @@ This folder is my exercise solutions for stanford online course databases and fo
 
 https://lagunita.stanford.edu/courses/DB/2014/SelfPaced/about
 
-https://leetcode.com/discuss/tag/sql
+https://leetcode.com/problemset/database/
